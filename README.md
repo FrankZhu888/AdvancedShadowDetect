@@ -28,20 +28,20 @@ AdvancedShadowDetect bypasses these mechanisms using the following two strategie
 
 Even if a process removes itself from the process list (DKOM), it must remain in the CPU Scheduler's runqueue to be executed.
 
-Mechanism: The script parses /proc/sched_debug (a view into the scheduler's state provided by CONFIG_SCHED_DEBUG).
+- Mechanism: The script parses /proc/sched_debug (a view into the scheduler's state provided by CONFIG_SCHED_DEBUG).
 
-Logic: It extracts PIDs directly from the scheduler's runqueue and cross-references them with the /proc filesystem.
+- Logic: It extracts PIDs directly from the scheduler's runqueue and cross-references them with the /proc filesystem.
 Detection: If a PID is running in the scheduler but is missing from /proc, it is flagged as a high-severity hidden process.
 
 2. PID Brute-force (The "Anti-Hook" Method)
 
 To catch rootkits that simply hide directories but leave the process structure intact:
 
-Mechanism: The script iterates through the entire PID space (from 1 to pid_max).
+- Mechanism: The script iterates through the entire PID space (from 1 to pid_max).
 
-Logic: It sends a null signal kill(pid, 0) to every potential PID. This system call checks if a process exists in the kernel without affecting it.
+- Logic: It sends a null signal kill(pid, 0) to every potential PID. This system call checks if a process exists in the kernel without affecting it.
 
-Detection: If the kernel returns "Success" (Process exists) or "Permission Denied" (Process exists but owned by another user), but the corresponding /proc/[PID] directory is invisible, it is flagged as a hidden process.
+- Detection: If the kernel returns "Success" (Process exists) or "Permission Denied" (Process exists but owned by another user), but the corresponding /proc/[PID] directory is invisible, it is flagged as a hidden process.
 
 ## Usage
 Prerequisites
