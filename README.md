@@ -7,15 +7,13 @@ AdvancedShadowDetect is a lightweight, dependency-free security tool designed fo
 Unlike traditional tools that rely solely on system calls, this tool implements a Dual-Engine Detection Strategy: it combines Kernel Scheduler Analysis with PID Brute-forcing to identify sophisticated hidden processes (Rootkits). It is specifically designed to catch advanced threats that employ techniques like DKOM (Direct Kernel Object Manipulation) to unlink themselves from the standard process list while remaining active in the CPU queue.
 
 ## Features
-Zero Dependencies: Written in pure Python 3 using only the standard library. No pip install required.
+- **Zero Dependencies**: Written in pure Python 3 using only the standard library. No pip install required.
 
-Deep Detection: Capable of detecting DKOM attacks by inspecting the kernel scheduler, in addition to standard syscall hooking.
+- **Deep Detection**: Capable of detecting DKOM attacks by inspecting the kernel scheduler, in addition to standard syscall hooking.
 
-Production Safe: Does not modify system files; operates strictly via read-only operations and benign system signal checks.
+- **Production Safe**: Does not modify system files; operates strictly via read-only operations and benign system signal checks.
 
-Lightweight: Single script file, easy to audit and deploy.
-
-Lightweight & Portable: Single script file, easy to audit, deploy, and run in isolated environments.
+- **Lightweight & Portable**: Single script file, easy to audit, deploy, and run in isolated environments.
 
 
 ## How it works
