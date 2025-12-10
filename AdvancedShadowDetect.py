@@ -111,7 +111,6 @@ def check_bruteforce(visible_pids, max_pid):
                     'desc': 'Syscall kill(0) confirms existence, but /proc/{pid} is missing'
                 })
 
-    # Output summary information
     print(f"    -> Brute-force analysis complete, found {len(results)} anomalies")
     return results
 
